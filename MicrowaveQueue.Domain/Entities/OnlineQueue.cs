@@ -11,14 +11,11 @@ namespace MicrowaveQueue.Domain.Entities
     {
         public bool InPause { get; set; }
 
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
-
         public int MicrowaveId { get; set; }
 
         [ForeignKey("MicrowaveId")]
         public virtual Microwave Microwave { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

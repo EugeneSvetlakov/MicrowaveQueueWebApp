@@ -1,0 +1,29 @@
+﻿@model RegisterUserViewModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+    Layout = "_BlankLayout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/signin.css" />
+}
+
+    <form asp-action="Register" asp-antiforgery="true" class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">@ViewData["Title"]</h1>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @*<label asp-for="UserName" class="sr-only"></label>*@
+        <input asp-for="UserName" type="text" class="form-control" placeholder="@nameof(Model.UserName)" required autofocus>
+        <span asp-validation-for="UserName" class="text-danger"></span>
+
+        @*<label asp-for="Password" class="sr-only">@nameof(Model.Password)</label>*@
+        <input asp-for="Password" type="password" class="form-control" placeholder="@nameof(Model.Password)" required>
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        @*<label asp-for="ConfirmPassword" class="sr-only">@nameof(Model.ConfirmPassword)</label>*@
+        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="@nameof(Model.ConfirmPassword)" required>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
+    </form>

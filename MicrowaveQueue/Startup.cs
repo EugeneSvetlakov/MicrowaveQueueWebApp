@@ -6,9 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MicrowaveQueue.DAL;
+using MicrowaveQueue.Domain.Entities;
 
 namespace MicrowaveQueue
 {
@@ -33,6 +37,24 @@ namespace MicrowaveQueue
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            // Подключение БД
+            services.AddDbContext<MicrowaveDbContext>(options => options.UseSqlServer(
+                Configuration.GetConnectionString("DefaultConnection")));
+            
+            // Подключение Аутентификации
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<MicrowaveDbContext>()
+                .AddDefaultTokenProviders();
+            // доп настройка сервиса Аутентификации
+            services.Configure<IdentityOptions>(o => {
+                o.Password.RequiredLength = 6;
+                o.Password.RequireDigit = false;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequireUppercase = false;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +74,7 @@ namespace MicrowaveQueue
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

@@ -9,9 +9,15 @@
 @if (showBanner)
 {
     <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
-        Use this space to summarize your privacy and cookie use policy. <a asp-area="" asp-controller="Home" asp-action="Privacy">Learn More</a>.
+        Использование Сервисов означает безоговорочное согласие пользователя с настоящей 
+        <a asp-area="" asp-controller="Home" asp-action="Privacy">Политикой</a> и указанными в ней 
+        условиями обработки его персональной информации, а именно на совершение действий, 
+        предусмотренных п. 3 ч. 1 ст. 3 Федерального закона от 27.07.2006 N 152-ФЗ "О персональных данных" 
+        как без, так и с использованием средств автоматизации, и подтверждает, что, давая такое согласие, 
+        он действует свободно, своей волей и в своем интересе; в случае несогласия с этими условиями 
+        пользователь должен воздержаться от использования Сервисов.
         <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
-            <span aria-hidden="true">Accept</span>
+            <span aria-hidden="true">Принять</span>
         </button>
     </div>
     <script>

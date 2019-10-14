@@ -5,8 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MicrowaveQueue.DAL;
 
 namespace MicrowaveQueue
 {
@@ -14,11 +16,33 @@ namespace MicrowaveQueue
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var host = BuildWebHost(args);
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    MicrowaveDbContext context = services.GetRequiredService<MicrowaveDbContext>();
+
+                    DbInitializer.Initialize(context);
+
+                    DbInitializer.InitializeUsers(services);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "Oops... Something went wrong at Db Initializing...");
+                }
+            }
+
+            host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .UseStartup<Startup>()
+            .Build();
     }
 }

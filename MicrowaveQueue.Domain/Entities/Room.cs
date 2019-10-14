@@ -9,5 +9,6 @@ namespace MicrowaveQueue.Domain.Entities
     [Table("Rooms")]
     public class Room : NamedEntity
     {
+        public virtual ICollection<Microwave> Microwaves { get; set; }
     }
 }

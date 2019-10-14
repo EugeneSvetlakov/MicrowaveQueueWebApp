@@ -1,8 +1,83 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @{
+        if (User.Identity.IsAuthenticated)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="btn btn-primary btn-lg btn-block mb-3">Записатсья в очередь</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 alert alert-warning" role="alert">
+                        <a asp-area="" asp-controller="Account" asp-action="Login">Авторизуйтесь</a>, чтобы записатсья
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <div class="card-deck">
+        <div class="card">
+            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Микроволновка: 1</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Комната: 1</h6>
+                <a href="#" class="btn btn-info">Go somewhere</a>
+            </div>
+            <div class="card-footer">
+                <small class="text-primary">Сейчас греет: Николай</small>
+                <small class="text-success">Следующий: Никто</small>
+            </div>
+        </div>
+        <div class="card">
+            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Микроволновка: 2</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Комната: 2</h6>
+                <a href="#" class="btn btn-info">Go somewhere</a>
+            </div>
+            <div class="card-footer">
+                <small class="text-primary">Сейчас греет: Василий</small>
+                <small class="text-success">Следующий: </small>
+
+            </div>
+        </div>
+        <div class="card">
+            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Микроволновка: 3</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Комната: 1</h6>
+                <a href="#" class="btn btn-info">Go somewhere</a>
+            </div>
+            <div class="card-footer">
+                <small class="text-primary">Сейчас греет: Никто</small>
+                <small class="text-success">Следующий: Никто</small>
+
+            </div>
+        </div>
+        <div class="card">
+            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Микроволновка: 4</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Комната: 2</h6>
+                <a href="#" class="btn btn-info">Go somewhere</a>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Сейчас греет: Никто</small>
+                <small class="text-success">Следующий: Никто</small>
+
+            </div>
+        </div>
+
+    </div>
 </div>
