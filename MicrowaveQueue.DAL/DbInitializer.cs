@@ -58,25 +58,21 @@ namespace MicrowaveQueue.DAL
                     new Microwave
                     {
                         Id = 1,
-                        Name = "Микроволновка1",
                         Room =  context.Rooms.FirstOrDefault(r=> r.Id == 1)
                     },
                     new Microwave
                     {
                         Id = 2,
-                        Name = "Микроволновка2",
                         Room = context.Rooms.FirstOrDefault(r=> r.Id == 2)
                     },
                     new Microwave
                     {
                         Id = 3,
-                        Name = "Микроволновка3",
                         Room = context.Rooms.FirstOrDefault(r=> r.Id == 1)
                     },
                     new Microwave
                     {
                         Id = 4,
-                        Name = "Микроволновка4",
                         Room = context.Rooms.FirstOrDefault(r=> r.Id == 2)
                     }
                 };

@@ -1,0 +1,25 @@
+﻿@model List<MicrowaveViewModel>
+
+    <div class="card-deck">
+        @foreach (var item in Model)
+        {
+            @* Экземпляр Микроволновки *@
+            <div class="card">
+                <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">No: @item.Id</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Room: @item.RoomId</h6>
+                </div>
+                <div class="card-footer">
+                    <div class="col">
+                        <div class="row">
+                            <small class="text-primary">Греет: @item.FirstInQueue</small>
+                        </div>
+                        <div class="row">
+                            <small class="text-success">Следующий: @item.SecondInQueue</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

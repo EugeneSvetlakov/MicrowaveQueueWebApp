@@ -16,12 +16,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Controllers\Interfaces\" />
-    <Folder Include="Controllers\Services\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <ProjectReference Include="..\MicrowaveQueue.DAL\MicrowaveQueue.DAL.csproj" />
     <ProjectReference Include="..\MicrowaveQueue.Domain\MicrowaveQueue.Domain.csproj" />
   </ItemGroup>

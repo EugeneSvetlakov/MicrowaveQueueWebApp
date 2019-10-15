@@ -2,14 +2,15 @@
     ViewData["Title"] = "Главная";
 }
 
-<div class="text-center">
+<div class="container">
     @{
+        // Кнопка Авторизации/ОчередьЗапись/ОчередьОсвободить
         if (User.Identity.IsAuthenticated)
         {
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <a href="#" class="btn btn-primary btn-lg btn-block mb-3">Записатсья в очередь</a>
+                        <a asp-area="" asp-controller="Queue" asp-action="AddToQueue" class="btn btn-primary btn-lg btn-block mb-3">Записатсья в очередь</a>
                     </div>
                 </div>
             </div>
@@ -25,59 +26,7 @@
             </div>
         }
     }
+    @*Формирование списка микроволновок*@
+    @await Component.InvokeAsync("MicrowaveComponent")
 
-    <div class="card-deck">
-        <div class="card">
-            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Микроволновка: 1</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Комната: 1</h6>
-                <a href="#" class="btn btn-info">Go somewhere</a>
-            </div>
-            <div class="card-footer">
-                <small class="text-primary">Сейчас греет: Николай</small>
-                <small class="text-success">Следующий: Никто</small>
-            </div>
-        </div>
-        <div class="card">
-            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Микроволновка: 2</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Комната: 2</h6>
-                <a href="#" class="btn btn-info">Go somewhere</a>
-            </div>
-            <div class="card-footer">
-                <small class="text-primary">Сейчас греет: Василий</small>
-                <small class="text-success">Следующий: </small>
-
-            </div>
-        </div>
-        <div class="card">
-            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Микроволновка: 3</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Комната: 1</h6>
-                <a href="#" class="btn btn-info">Go somewhere</a>
-            </div>
-            <div class="card-footer">
-                <small class="text-primary">Сейчас греет: Никто</small>
-                <small class="text-success">Следующий: Никто</small>
-
-            </div>
-        </div>
-        <div class="card">
-            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Микроволновка: 4</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Комната: 2</h6>
-                <a href="#" class="btn btn-info">Go somewhere</a>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Сейчас греет: Никто</small>
-                <small class="text-success">Следующий: Никто</small>
-
-            </div>
-        </div>
-
-    </div>
 </div>

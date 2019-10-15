@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MicrowaveQueue.Controllers.Interfaces;
+using MicrowaveQueue.Controllers.Services;
 using MicrowaveQueue.DAL;
 using MicrowaveQueue.Domain.Entities;
 
@@ -37,7 +39,10 @@ namespace MicrowaveQueue
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+
+            services.AddScoped<IMicrowaveService, SqlMicrowaveService>();
+
+
             // Подключение БД
             services.AddDbContext<MicrowaveDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));

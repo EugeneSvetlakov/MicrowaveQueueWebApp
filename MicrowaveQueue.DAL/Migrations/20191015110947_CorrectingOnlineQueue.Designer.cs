@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MicrowaveQueue.DAL;
 
 namespace MicrowaveQueue.DAL.Migrations
 {
     [DbContext(typeof(MicrowaveDbContext))]
-    partial class MicrowaveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191015110947_CorrectingOnlineQueue")]
+    partial class CorrectingOnlineQueue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,11 +137,9 @@ namespace MicrowaveQueue.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("FirstInQueue");
+                    b.Property<string>("Name");
 
                     b.Property<int?>("RoomId");
-
-                    b.Property<int?>("SecondInQueue");
 
                     b.HasKey("Id");
 
