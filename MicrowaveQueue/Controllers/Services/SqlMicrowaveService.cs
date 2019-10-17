@@ -32,10 +32,5 @@ namespace MicrowaveQueue.Controllers.Services
                 .Include(r => r.Room)
                 .FirstOrDefault(m => m.Id == id);
         }
-
-        public MicrowaveViewModel TransformMicrowave()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

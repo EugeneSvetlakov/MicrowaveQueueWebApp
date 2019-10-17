@@ -11,8 +11,6 @@ namespace MicrowaveQueue.Models
 
         public int RoomId { get; set; }
 
-        public int? FirstInQueue { get; set; }
-
-        public int? SecondInQueue { get; set; }
+        public int? NowQueue { get; set; }
     }
 }

@@ -3,29 +3,8 @@
 }
 
 <div class="container">
-    @{
-        // Кнопка Авторизации/ОчередьЗапись/ОчередьОсвободить
-        if (User.Identity.IsAuthenticated)
-        {
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <a asp-area="" asp-controller="Queue" asp-action="AddToQueue" class="btn btn-primary btn-lg btn-block mb-3">Записатсья в очередь</a>
-                    </div>
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 alert alert-warning" role="alert">
-                        <a asp-area="" asp-controller="Account" asp-action="Login">Авторизуйтесь</a>, чтобы записатсья
-                    </div>
-                </div>
-            </div>
-        }
-    }
+    @await Component.InvokeAsync("QueueButonComponent")
+    
     @*Формирование списка микроволновок*@
     @await Component.InvokeAsync("MicrowaveComponent")
 

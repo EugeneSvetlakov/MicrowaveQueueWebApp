@@ -28,8 +28,7 @@ namespace MicrowaveQueue.Controllers
                 {
                     Id = microwave.Id,
                     RoomId = microwave.Room.Id,
-                    FirstInQueue = microwave.FirstInQueue,
-                    SecondInQueue = microwave.SecondInQueue
+                    NowQueue = microwave.NowQueue,
                 };
 
             return View(microwaveview);

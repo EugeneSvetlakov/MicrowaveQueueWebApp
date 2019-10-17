@@ -8,13 +8,19 @@ using System.Text;
 namespace MicrowaveQueue.Domain.Entities
 {
     [Table("Microwaves")]
-    public class Microwave: BaseEntity
+    public class Microwave : BaseEntity
     {
-        public int? FirstInQueue { get; set; }
-
-        public int? SecondInQueue { get; set; }
+        public int? NowQueue { get; set; }
 
         [DisplayName("Комната")]
         public virtual Room Room { get; set; }
+
+        public bool IsFree
+        {
+            get
+            {
+                return !this.NowQueue.HasValue;
+            }
+        }
     }
 }

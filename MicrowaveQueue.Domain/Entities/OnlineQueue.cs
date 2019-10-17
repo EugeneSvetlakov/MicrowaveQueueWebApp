@@ -8,6 +8,7 @@ using System.Text;
 
 namespace MicrowaveQueue.Domain.Entities
 {
+
     [Table("OnlineQueues")]
     public class OnlineQueue
     {
@@ -27,10 +28,9 @@ namespace MicrowaveQueue.Domain.Entities
             set { this.dateCreated = value; }
         }
 
-        public int? QueueNum { get; set; }
+        public int QueueNum { get; set; } = 0;
 
-        [DefaultValue(false)]
-        public bool InPause { get; set; }
+        public Status Status { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }

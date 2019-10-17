@@ -10,18 +10,19 @@ namespace MicrowaveQueue.ViewComponents
 {
     public class MicrowaveComponent : ViewComponent
     {
-        private readonly IMicrowaveService _service;
+        private readonly IMicrowaveService _microwaveServiceservice;
 
-        public MicrowaveComponent(IMicrowaveService service)
+        public MicrowaveComponent(IMicrowaveService microwaveServiceservice)
         {
-            _service = service;
+            _microwaveServiceservice = microwaveServiceservice;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+
             List<MicrowaveViewModel> microwaveviews = new List<MicrowaveViewModel>();
 
-            var microwaves = _service.GetAll();
+            var microwaves = _microwaveServiceservice.GetAll();
 
             foreach (var item in microwaves)
             {
@@ -30,8 +31,7 @@ namespace MicrowaveQueue.ViewComponents
                     {
                         Id = item.Id,
                         RoomId = item.Room.Id,
-                        FirstInQueue = item.FirstInQueue,
-                        SecondInQueue = item.SecondInQueue
+                        NowQueue = item.NowQueue,
                     });
             }
 

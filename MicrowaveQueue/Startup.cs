@@ -40,8 +40,9 @@ namespace MicrowaveQueue
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // Сервисы
             services.AddScoped<IMicrowaveService, SqlMicrowaveService>();
-
+            services.AddScoped<IQueueService, SqlQueueService>();
 
             // Подключение БД
             services.AddDbContext<MicrowaveDbContext>(options => options.UseSqlServer(

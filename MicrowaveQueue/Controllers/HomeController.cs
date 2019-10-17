@@ -4,18 +4,24 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MicrowaveQueue.Controllers.Interfaces;
 using MicrowaveQueue.Models;
 
 namespace MicrowaveQueue.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
-        {
+        private readonly IQueueService _queueService;
 
+        public HomeController(IQueueService queueService)
+        {
+            _queueService = queueService;
         }
+
         public IActionResult Index()
         {
+            _queueService.FillMicrowaves();
+
             return View();
         }
 

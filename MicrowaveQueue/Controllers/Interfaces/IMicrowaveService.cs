@@ -12,7 +12,5 @@ namespace MicrowaveQueue.Controllers.Interfaces
         IEnumerable<Microwave> GetAll();
 
         Microwave GetById(int id);
-
-        MicrowaveViewModel TransformMicrowave();
     }
 }

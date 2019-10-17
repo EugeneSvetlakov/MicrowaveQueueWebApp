@@ -26,5 +26,26 @@ namespace MicrowaveQueue.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult PauseQueue(int id)
+        {
+            var queue = _service.ChangeStatus(id, Status.Pause);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult ReturnToQueue(int id)
+        {
+            var queue = _service.ChangeStatus(id, Status.Active);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult ComplitQueue(int id)
+        {
+            var queue = _service.ChangeStatus(id, Status.Complit);
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
