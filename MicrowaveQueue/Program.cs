@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.EventLog;
 using MicrowaveQueue.DAL;
+using NLog.Extensions.Logging;
 
 namespace MicrowaveQueue
 {
@@ -44,17 +45,17 @@ namespace MicrowaveQueue
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>()
-            .ConfigureLogging(logging =>
+            .ConfigureLogging((hostingContext, logging) =>
             {
                 // clear default logging providers
                 logging.ClearProviders();
 
                 // add built-in providers manually, if desired 
+                logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                 logging.AddConsole();
                 logging.AddDebug();
-                logging.AddEventLog();
                 logging.AddEventSourceLogger();
-                //logging.AddTraceSource(sourceSwitchName);
+                logging.AddNLog();
             })
             .Build();
     }

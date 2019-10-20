@@ -7,7 +7,7 @@ namespace MicrowaveQueue.Domain.Entities.Base.Interfaces
     public interface IOrderedEntity
     {
         /// <summary>
-        /// Порядок, приоритет
+        /// Порядок
         /// </summary>
         int Order { get; set; }
     }

@@ -12,7 +12,7 @@ namespace MicrowaveQueue.Domain.Entities
     {
         public int? NowQueue { get; set; }
 
-        [DisplayName("Комната")]
+        [DisplayName("Room")]
         public virtual Room Room { get; set; }
 
         public bool IsFree

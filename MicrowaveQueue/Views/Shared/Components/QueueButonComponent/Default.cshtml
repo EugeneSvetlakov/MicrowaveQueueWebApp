@@ -4,91 +4,92 @@
     <div class="row">
         @{
             // Кнопка Авторизации/ОчередьЗапись/ОчередьОсвободить
-            if (Model.IsAuthenticated)
+            if (!Model.IsAuthenticated)
             {
-                <div class="col-12">
-                    @if (Model.HasQueue)
-                    {
-                        @if (Model.Queue.Status == Status.Active)
-                        {
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Ваш номер:
-                                    <span class="text-xl-center">@Model.Queue.QueueNum</span>.
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    @if (Model.InMicrowave)
-                                    {
-                                        <li class="list-group-item">
-                                            Ваша микроволновка № @Model.Microwave.Id
-                                        </li>
-                                        <li class="list-group-item">
-                                            <a asp-area=""
-                                               asp-controller="Queue"
-                                               asp-action="PauseQueue"
-                                               asp-route-id="@Model.Queue.QueueNum"
-                                               class="btn btn-warning btn-lg btn-block mb-3">
-                                                Приостановить
-                                            </a>
-
-                                        </li>
-                                        <li class="list-group-item">
-                                            <a asp-area=""
-                                               asp-controller="Queue"
-                                               asp-action="ComplitQueue"
-                                               asp-route-id="@Model.Queue.QueueNum"
-                                               class="btn btn-primary btn-lg btn-block mb-3">
-                                                Завершить
-                                            </a>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li class="list-group-item">
-                                            Ожидайте его появление в одной из микроволновок.
-                                        </li>
-                                    }
-
-                                    @if (Model.Queue.Status == Status.Pause)
-                                    {
-                                        <li class="list-group-item">
-                                            <a asp-area=""
-                                               asp-controller="Queue"
-                                               asp-action="ReturnToQueue"
-                                               asp-route-id="@Model.Queue.QueueNum"
-                                               class="btn btn-primary btn-lg btn-block mb-3">
-                                                Вернуть в очередь
-                                            </a>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <a asp-area=""
-                                               asp-controller="Queue"
-                                               asp-action="ComplitQueue"
-                                               asp-route-id="@Model.Queue.QueueNum"
-                                               class="btn btn-success btn-lg btn-block mb-3">
-                                                Завершить
-                                            </a>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <a asp-area=""
-                           asp-controller="Queue"
-                           asp-action="AddToQueue"
-                           class="btn btn-primary btn-lg btn-block mb-3">
-                            Записатсья в очередь
-                        </a>
-                    }
+                <div class="col-12 alert alert-warning" role="alert">
+                    <a asp-area="" asp-controller="Account" asp-action="Login">Авторизуйтесь</a>, чтобы записатсья
                 </div>
             }
             else
             {
-                <div class="col-12 alert alert-warning" role="alert">
-                    <a asp-area="" asp-controller="Account" asp-action="Login">Авторизуйтесь</a>, чтобы записатсья
+                <div class="col-12">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h3>
+                                Queue:
+                                @if (Model.HasQueue)
+                                {
+                                    <span class="text-xl-center">
+                                        @Model.Queue.QueueNum
+                                        , Status: @Model.Queue.Status
+                                    </span>
+                                }
+                            </h3>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4>
+                                    Microwave:
+                                    @if (Model.InMicrowave)
+                                    {
+                                        @Model.Microwave.Id
+                                    }
+                                </h4>
+                            </li>
+                            @if (Model.HasQueue)
+                            {
+                                if (Model.Queue.Status == Status.Active)
+                                {
+                                    <li class="list-group-item">
+                                        <a asp-area=""
+                                           asp-controller="Queue"
+                                           asp-action="PauseQueue"
+                                           asp-route-id="@Model.Queue.QueueNum"
+                                           class="btn btn-warning btn-lg btn-block mb-3">
+                                            Приостановить
+                                        </a>
+                                    </li>
+                                }
+
+                                if (Model.Queue.Status == Status.Pause)
+                                {
+                                    <li class="list-group-item">
+                                        <a asp-area=""
+                                           asp-controller="Queue"
+                                           asp-action="ReturnToQueue"
+                                           asp-route-id="@Model.Queue.QueueNum"
+                                           class="btn btn-info btn-lg btn-block mb-3">
+                                            Вернуть в очередь
+                                        </a>
+                                    </li>
+                                }
+
+                                if (Model.Queue.Status != Status.Complit)
+                                {
+                                    <li class="list-group-item">
+                                        <a asp-area=""
+                                           asp-controller="Queue"
+                                           asp-action="ComplitQueue"
+                                           asp-route-id="@Model.Queue.QueueNum"
+                                           class="btn btn-primary btn-lg btn-block mb-3">
+                                            Завершить
+                                        </a>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="list-group-item">
+                                    <a asp-area=""
+                                       asp-controller="Queue"
+                                       asp-action="AddToQueue"
+                                       class="btn btn-primary btn-lg btn-block mb-3">
+                                        Записатсья в очередь
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             }
         }

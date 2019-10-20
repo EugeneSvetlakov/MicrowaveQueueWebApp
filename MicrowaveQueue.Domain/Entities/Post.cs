@@ -8,7 +8,7 @@ using System.Text;
 namespace MicrowaveQueue.Domain.Entities
 {
     /// <summary>
-    /// Должность работника
+    /// Post
     /// </summary>
     [Table("Posts")]
     public class Post : NamedEntity, IOrderedEntity

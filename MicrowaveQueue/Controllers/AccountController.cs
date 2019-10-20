@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MicrowaveQueue.Domain.Entities;
 using MicrowaveQueue.Models;
 
@@ -13,25 +14,37 @@ namespace MicrowaveQueue.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ILogger<AccountController> _logger;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, 
+            SignInManager<User> signInManager, 
+            ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _logger = logger;
         }
 
         [HttpGet]
         public IActionResult Login(string returnUrl)
         {
+            _logger.LogInformation("Executing: [Get] Action='Login' on Controller='Account' in Area=''");
+
             var model = new LoginViewModel { ReturnUrl = returnUrl };
+
             return View(model);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            _logger.LogInformation("Starting: [Post] Action='Login' on Controller='Account' in Area=''");
+
             if (!ModelState.IsValid)
             {
+                _logger.LogWarning("Error Model Validation on: [Post] Action='Login' on Controller='Account' in Area=''");
+                _logger.LogInformation("Stop: [Post] Action='Login' on Controller='Account' in Area=''");
+
                 return View(model);
             }
 
@@ -41,14 +54,22 @@ namespace MicrowaveQueue.Controllers
 
             if (!loginResult.Succeeded)
             {
+                _logger.LogWarning("Login Error: [Post] Action='Login' on Controller='Account' in Area=''");
+
                 ModelState.AddModelError("", "Ошибка авторизации.");
                 return View(model);
             }
 
-            if (Url.IsLocalUrl(model.ReturnUrl)) // если Url локальный
+            _logger.LogInformation("Successful: [Post] Action='Login' on Controller='Account' in Area=''");
+
+            if (Url.IsLocalUrl(model.ReturnUrl))
             {
-                return Redirect(model.ReturnUrl); //model.ReturnUrl
+                _logger.LogInformation($"Redirecting To: {model.ReturnUrl}");
+
+                return Redirect(model.ReturnUrl);
             }
+
+            _logger.LogInformation($"Redirecting To: Action='Index' on Controller='Home' in Area=''");
 
             return RedirectToAction("Index", "Home");
         }
@@ -56,7 +77,11 @@ namespace MicrowaveQueue.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
+            _logger.LogInformation("Executing: [Get] Action='Logout' on Controller='Account' in Area=''");
+
             await _signInManager.SignOutAsync();
+
+            _logger.LogInformation($"Redirecting To: Action='Index' on Controller='Home' in Area=''");
 
             return RedirectToAction("Index", "Home");
         }
@@ -64,14 +89,21 @@ namespace MicrowaveQueue.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            _logger.LogInformation("Executing: [Get] Action='Register' on Controller='Account' in Area=''");
+
             return View(new RegisterUserViewModel());
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterUserViewModel model)
         {
+            _logger.LogInformation("Starting: [Post] Action='Register' on Controller='Account' in Area=''");
+
             if (!ModelState.IsValid)
             {
+                _logger.LogWarning("Error Model Validation on: [Post] Action='Register' on Controller='Account' in Area=''");
+                _logger.LogInformation("Stop: [Post] Action='Register' on Controller='Account' in Area=''");
+
                 return View(model);
             }
 
@@ -81,16 +113,28 @@ namespace MicrowaveQueue.Controllers
 
             if (!createUserResult.Succeeded)
             {
+                _logger.LogWarning("Error Creating User");
+
                 foreach (var error in createUserResult.Errors)
                 {
+                    _logger.LogWarning($"Error Creating User Details: {error.Description}");
+                    _logger.LogInformation("Stop: [Post] Action='Register' on Controller='Account' in Area=''");
+
                     ModelState.AddModelError("", error.Description);
+
                     return View(model);
                 }
             }
 
-            await _userManager.AddToRoleAsync(user, "Users"); // поумолчанию присваиваем роль Users
+            _logger.LogInformation("Succsess Creating User");
 
-            await _signInManager.SignInAsync(user, false); // Авторизация под вновь созданным Аккаунтом
+            await _userManager.AddToRoleAsync(user, "Users");
+
+            await _signInManager.SignInAsync(user, false);
+
+            _logger.LogInformation("Successful: [Post] Action='Register' on Controller='Account' in Area=''");
+
+            _logger.LogInformation($"Redirecting To: Action='Index' on Controller='Home' in Area=''");
 
             return RedirectToAction("Index", "Home");
         }

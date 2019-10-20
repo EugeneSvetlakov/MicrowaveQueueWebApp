@@ -3,11 +3,11 @@
     <div class="card-deck">
         @foreach (var item in Model)
         {
-            @* Экземпляр Микроволновки *@
+            @* Entity Microwave *@
             <div class="card">
                 <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">No: @item.Id</h5>
+                    <h5 class="card-title">№: @item.Id</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Room: @item.RoomId</h6>
                 </div>
                 <div class="card-footer">

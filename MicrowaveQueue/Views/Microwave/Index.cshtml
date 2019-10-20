@@ -1,6 +1,6 @@
 ﻿@model MicrowaveViewModel
 
-@* Экземпляр Микроволновки *@
+@* Entity Microwave *@
 <div class="card">
     <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
     <div class="card-body">
@@ -10,7 +10,7 @@
     <div class="card-footer">
         <div class="col">
             <div class="row">
-                <small class="text-primary">Греет: @Model.NowQueue</small>
+                <small class="text-primary">Обслуживается №: @Model.NowQueue</small>
             </div>
         </div>
     </div>

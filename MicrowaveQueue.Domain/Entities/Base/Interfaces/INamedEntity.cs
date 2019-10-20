@@ -7,7 +7,7 @@ namespace MicrowaveQueue.Domain.Entities.Base.Interfaces
     public interface INamedEntity : IBaseEntity
     {
         /// <summary>
-        /// Имя, наименование
+        /// Имя
         /// </summary>
         string Name { get; set; }
     }
