@@ -1,22 +1,30 @@
-﻿@model List<MicrowaveViewModel>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
-    <div class="card-deck">
-        @foreach (var item in Model)
-        {
-            @* Entity Microwave *@
-            <div class="card">
-                <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">№: @item.Id</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Room: @item.RoomId</h6>
-                </div>
-                <div class="card-footer">
-                    <div class="col">
-                        <div class="row">
-                            <div class="text-primary">Обслуживается № <span class="font-weight-bold text-warning text-xl-right">@item.NowQueue</span></div>
+@model List<MicrowaveViewModel>
+
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+        @* Entity Microwave *@
+        <div class="card">
+            <img src="~/images/Microwave.svg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">No: @item.Id</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@Localizer["Room"]: @item.RoomId</h6>
+            </div>
+            <div class="card-footer">
+                <div class="col">
+                    <div class="row">
+                        <div class="text-primary">
+                            @Localizer["ServedBy"] No:
+                            <span class="font-weight-bold text-warning text-xl-right">
+                                @item.NowQueue
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
+</div>

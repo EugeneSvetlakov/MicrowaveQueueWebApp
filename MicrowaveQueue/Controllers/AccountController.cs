@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using MicrowaveQueue.Domain.Entities;
 using MicrowaveQueue.Models;
@@ -15,19 +16,26 @@ namespace MicrowaveQueue.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AccountController> _logger;
+        private readonly IStringLocalizer<AccountController> _localizer;
 
         public AccountController(UserManager<User> userManager, 
             SignInManager<User> signInManager, 
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IStringLocalizer<AccountController> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _localizer = localizer;
         }
 
         [HttpGet]
         public IActionResult Login(string returnUrl)
         {
+            ViewData["Title"] = _localizer["LoginTitle"];
+            ViewData["BtnSubmitLogin"] = _localizer["BtnSubmitLogin"];
+            ViewData["Registration"] = _localizer["Registration"];
+
             _logger.LogInformation("Executing: [Get] Action='Login' on Controller='Account' in Area=''");
 
             var model = new LoginViewModel { ReturnUrl = returnUrl };
@@ -89,6 +97,9 @@ namespace MicrowaveQueue.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewData["Title"] = _localizer["Registration"];
+            ViewData["BtnSubmitRegister"] = _localizer["BtnSubmitRegister"];
+
             _logger.LogInformation("Executing: [Get] Action='Register' on Controller='Account' in Area=''");
 
             return View(new RegisterUserViewModel());

@@ -1,8 +1,5 @@
 ﻿@model ErrorViewModel
-@{
-    ViewData["Title"] = "Not Found";
-}
 
-<h1 class="text-danger">@ViewBag.ErrorMessage</h1>
+<h1 class="text-danger">@ViewData["ErrorMessage"]</h1>
 
-<a asp-area="" asp-controller="Home" asp-action="Index">Click to navigate to Home Page</a>
+<a asp-area="" asp-controller="Home" asp-action="Index">@ViewData["RedirectToHomeBtn"]</a>

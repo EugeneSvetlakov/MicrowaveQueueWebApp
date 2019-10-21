@@ -1,7 +1,6 @@
 ﻿@model RegisterUserViewModel
 
 @{
-    ViewData["Title"] = "Регистрация";
     Layout = "_BlankLayout";
 }
 
@@ -25,5 +24,5 @@
         <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="@nameof(Model.ConfirmPassword)" required>
         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">@ViewData["BtnSubmitRegister"]</button>
     </form>

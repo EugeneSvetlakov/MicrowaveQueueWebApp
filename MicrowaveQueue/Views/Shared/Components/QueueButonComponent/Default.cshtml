@@ -1,4 +1,7 @@
-﻿@model UserViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@model UserViewModel
 
 <div class="container">
     <div class="row">
@@ -6,9 +9,13 @@
             // Кнопка Авторизации/ОчередьЗапись/ОчередьОсвободить
             if (!Model.IsAuthenticated)
             {
-                <div class="col-12 alert alert-warning" role="alert">
-                    <a asp-area="" asp-controller="Account" asp-action="Login">Авторизуйтесь</a>, чтобы записатсья
-                </div>
+        <div class="col-12 alert alert-warning" role="alert">
+            <a asp-area=""
+               asp-controller="Account"
+               asp-action="Login">
+                @Localizer["Loggin"]
+            </a>, @Localizer["ToQueue"]
+        </div>
             }
             else
             {
@@ -16,20 +23,20 @@
                     <div class="card mb-3">
                         <div class="card-header">
                             <h3>
-                                Queue:
+                                @Localizer["Queue"]:
                                 @if (Model.HasQueue)
                                 {
-                                    <span class="text-xl-center">
-                                        @Model.Queue.QueueNum
-                                        , Status: @Model.Queue.Status
-                                    </span>
+                                <span class="text-xl-center">
+                                    @Model.Queue.QueueNum
+                                    , @Localizer["Status"]: @Model.Queue.Status
+                                </span>
                                 }
                             </h3>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <h4>
-                                    Microwave:
+                                    @Localizer["Microwave"]:
                                     @if (Model.InMicrowave)
                                     {
                                         @Model.Microwave.Id
@@ -46,7 +53,7 @@
                                            asp-action="PauseQueue"
                                            asp-route-id="@Model.Queue.QueueNum"
                                            class="btn btn-warning btn-lg btn-block mb-3">
-                                            Приостановить
+                                            @Localizer["Pause"]
                                         </a>
                                     </li>
                                 }
@@ -59,7 +66,7 @@
                                            asp-action="ReturnToQueue"
                                            asp-route-id="@Model.Queue.QueueNum"
                                            class="btn btn-info btn-lg btn-block mb-3">
-                                            Вернуть в очередь
+                                            @Localizer["ReturnToQueue"]
                                         </a>
                                     </li>
                                 }
@@ -72,7 +79,7 @@
                                            asp-action="ComplitQueue"
                                            asp-route-id="@Model.Queue.QueueNum"
                                            class="btn btn-primary btn-lg btn-block mb-3">
-                                            Завершить
+                                            @Localizer["Finish"]
                                         </a>
                                     </li>
                                 }
@@ -84,7 +91,7 @@
                                        asp-controller="Queue"
                                        asp-action="AddToQueue"
                                        class="btn btn-primary btn-lg btn-block mb-3">
-                                        Записатсья в очередь
+                                        @Localizer["QueueUp"]
                                     </a>
                                 </li>
                             }
