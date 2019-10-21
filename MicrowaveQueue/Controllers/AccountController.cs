@@ -35,6 +35,9 @@ namespace MicrowaveQueue.Controllers
             ViewData["Title"] = _localizer["LoginTitle"];
             ViewData["BtnSubmitLogin"] = _localizer["BtnSubmitLogin"];
             ViewData["Registration"] = _localizer["Registration"];
+            ViewData["UserName"] = _localizer["UserName"];
+            ViewData["Password"] = _localizer["Password"];
+            ViewData["RememberMe"] = _localizer["RememberMe"];
 
             _logger.LogInformation("Executing: [Get] Action='Login' on Controller='Account' in Area=''");
 
@@ -99,6 +102,9 @@ namespace MicrowaveQueue.Controllers
         {
             ViewData["Title"] = _localizer["Registration"];
             ViewData["BtnSubmitRegister"] = _localizer["BtnSubmitRegister"];
+            ViewData["UserName"] = _localizer["UserName"];
+            ViewData["Password"] = _localizer["Password"];
+            ViewData["ConfirmPassword"] = _localizer["ConfirmPassword"];
 
             _logger.LogInformation("Executing: [Get] Action='Register' on Controller='Account' in Area=''");
 

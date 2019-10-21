@@ -12,12 +12,12 @@
     <h1 class="h3 mb-3 font-weight-normal">@ViewData["Title"]</h1>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <label asp-for="UserName" class="sr-only"></label>
-    <input asp-for="UserName" type="text" class="form-control" placeholder="@nameof(Model.UserName)" required autofocus>
+    <input asp-for="UserName" type="text" class="form-control" placeholder=@ViewData["UserName"] required autofocus>
     <label asp-for="Password" class="sr-only">@nameof(Model.Password)</label>
-    <input asp-for="Password" type="password" class="form-control" placeholder="@nameof(Model.Password)" required>
+    <input asp-for="Password" type="password" class="form-control" placeholder=@ViewData["Password"] required>
     <div class="checkbox mb-3">
         <label>
-            <input asp-for="RememberMe" type="checkbox"> @nameof(Model.RememberMe)
+            <input asp-for="RememberMe" type="checkbox"> @ViewData["RememberMe"]
         </label>
     </div>
     <input asp-for="ReturnUrl" readonly hidden />

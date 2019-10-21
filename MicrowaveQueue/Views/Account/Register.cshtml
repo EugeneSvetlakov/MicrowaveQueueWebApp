@@ -13,15 +13,15 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         @*<label asp-for="UserName" class="sr-only"></label>*@
-        <input asp-for="UserName" type="text" class="form-control" placeholder="@nameof(Model.UserName)" required autofocus>
+        <input asp-for="UserName" type="text" class="form-control" placeholder=@ViewData["UserName"] required autofocus>
         <span asp-validation-for="UserName" class="text-danger"></span>
 
         @*<label asp-for="Password" class="sr-only">@nameof(Model.Password)</label>*@
-        <input asp-for="Password" type="password" class="form-control" placeholder="@nameof(Model.Password)" required>
+        <input asp-for="Password" type="password" class="form-control" placeholder=@ViewData["Password"] required>
         <span asp-validation-for="Password" class="text-danger"></span>
 
         @*<label asp-for="ConfirmPassword" class="sr-only">@nameof(Model.ConfirmPassword)</label>*@
-        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="@nameof(Model.ConfirmPassword)" required>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder=@ViewData["ConfirmPassword"] required>
         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">@ViewData["BtnSubmitRegister"]</button>

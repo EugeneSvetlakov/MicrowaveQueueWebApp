@@ -123,10 +123,26 @@
   <data name="BtnSubmitRegister" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+    <comment>Подтверждение пароля</comment>
+  </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Loggin In</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>Пароль</comment>
+  </data>
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+    <comment>Запомнить меня</comment>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+    <comment>Имя пользователя</comment>
   </data>
 </root>

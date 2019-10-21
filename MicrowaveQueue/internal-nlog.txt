@@ -19,3 +19,12 @@
 2019-10-20 21:50:08.9732 Info Found 45 configuration items
 2019-10-20 21:50:09.0058 Info Configuration initialized.
 2019-10-20 21:50:09.0349 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.6.7.10445. Product version: 4.6.7.
+2019-10-21 15:56:29.7337 Info Message Template Auto Format enabled
+2019-10-21 15:56:29.7649 Info Loading assembly: NLog.Web.AspNetCore
+2019-10-21 15:56:29.8447 Info Adding target FileTarget(Name=allfile)
+2019-10-21 15:56:29.8486 Info Adding target FileTarget(Name=ownFile-web)
+2019-10-21 15:56:29.8914 Info Found 45 configuration items
+2019-10-21 15:56:29.9090 Info Configuration initialized.
+2019-10-21 15:56:29.9138 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.6.7.10445. Product version: 4.6.7.
+2019-10-21 15:56:30.0628 Info AppDomain Shutting down. Logger closing...
+2019-10-21 15:56:30.0872 Info Logger has been shut down.
