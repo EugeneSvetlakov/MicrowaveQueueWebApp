@@ -1,0 +1,1 @@
+﻿dotnet-hosting-2.2.0-win.exe Need install on server with iis to support run ASP.NET CORE project based on v2.2.0
