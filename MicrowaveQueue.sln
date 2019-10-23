@@ -7,7 +7,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicrowaveQueue", "Microwave
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicrowaveQueue.DAL", "MicrowaveQueue.DAL\MicrowaveQueue.DAL.csproj", "{B55FABE9-A088-475C-93A3-5BAA2B7E18D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrowaveQueue.Domain", "MicrowaveQueue.Domain\MicrowaveQueue.Domain.csproj", "{AB800E53-54EC-41A7-88E0-225B97F35205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicrowaveQueue.Domain", "MicrowaveQueue.Domain\MicrowaveQueue.Domain.csproj", "{AB800E53-54EC-41A7-88E0-225B97F35205}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Distrib", "Distrib", "{09550A10-4862-401F-B08E-66C534CBD0F5}"
+	ProjectSection(SolutionItems) = preProject
+		Distrib\dotnet-hosting-2.2.0-win.exe = Distrib\dotnet-hosting-2.2.0-win.exe
+		ReadMe.txt = ReadMe.txt
+		Distrib\win-x86-exe.zip = Distrib\win-x86-exe.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{23729D26-72FC-4A47-B481-39A9507C348E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{511C4234-92FC-45B6-BC49-34E9605E4283}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Documents\SimbirSoft\Doc\img\ApplicationSuccesStarted.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\ApplicationSuccesStarted.jpg
+		..\..\..\Documents\SimbirSoft\Doc\img\FolderPermission.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\FolderPermission.jpg
+		..\..\..\Documents\SimbirSoft\Doc\img\IIS_01.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\IIS_01.jpg
+		..\..\..\Documents\SimbirSoft\Doc\img\IIS_02.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\IIS_02.jpg
+		..\..\..\Documents\SimbirSoft\Doc\img\IIS_03.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\IIS_03.jpg
+		..\..\..\Documents\SimbirSoft\Doc\img\IIS_04.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\IIS_04.jpg
+		..\..\..\Documents\SimbirSoft\Doc\img\IIS_05.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\IIS_05.jpg
+		..\..\..\Documents\SimbirSoft\Doc\img\IIS_06.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\IIS_06.jpg
+		..\..\..\Documents\SimbirSoft\Doc\img\ManagerIIS.jpg = ..\..\..\Documents\SimbirSoft\Doc\img\ManagerIIS.jpg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +52,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23729D26-72FC-4A47-B481-39A9507C348E} = {09550A10-4862-401F-B08E-66C534CBD0F5}
+		{511C4234-92FC-45B6-BC49-34E9605E4283} = {23729D26-72FC-4A47-B481-39A9507C348E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0997C850-95B2-49E4-967B-84F04FDA1471}
